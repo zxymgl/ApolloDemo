@@ -1,0 +1,28 @@
+*.log
+
+node_modules
+
+dist
+coverage
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IntelliJ IDEA IDE generated files #
+#####################################
+.idea
+.idea?
+.springBeans
+.springBeans?
+target/
+atlassian-ide-plugin.xml
+*.iml
+*.ipr
+*.iws
