@@ -3,8 +3,22 @@ import DuckImage from '../assets/Duck.jpg'
 import classes from './HomeView.scss'
 
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import gql from 'graphql-tag'
+import { connect } from 'react-redux'
 
+import { bindActionCreators } from 'redux'
+
+function mapStateToProps (state) {
+  return {
+    ...state
+  }
+}
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators({}, dispatch),
+    dispatch
+  }
+}
 const Select = () => (
   <div>
     <h4>this a Select </h4>
@@ -38,4 +52,4 @@ query {
 const withData = graphql(HOME_QUERY)
 
 
-export default withData(HomeView)
+export default connect(mapStateToProps,mapDispatchToProps)(withData(HomeView))

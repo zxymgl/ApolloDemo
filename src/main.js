@@ -12,14 +12,7 @@ import createApolloClient from 'lib/helpers/create-apollo-client'
 import { ApolloProvider } from 'react-apollo'
 
 const  sesssionValue = ''
-const networkInterface = createNetworkInterface({
-  uri: 'https://api.github.com/graphql',
-  opts: {
-    Authorization: sesssionValue
-
-  },
-  transportBatching: true,
-});
+const networkInterface = createNetworkInterface('https://api.github.com/graphql');
 networkInterface.use([{
   applyMiddleware(req, next) {
     if (!req.options.headers) {
@@ -27,6 +20,7 @@ networkInterface.use([{
         Authorization: 'Bearer f36821ccc7024129f9566d2395960523b4785cc1'
       };  // Create the header object if needed.
     }
+    next()
   }
 }])
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
