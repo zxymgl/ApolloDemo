@@ -2,20 +2,39 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import classes from './HomeView.scss'
 
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+
 const Select = () => (
   <div>
     <h4>this a Select </h4>
   </div>
 )
+class HomeView extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { }
+  }
+  render () {
+    return (
+      <div>
+        <h4>Welcome!</h4>
+        <div style={{ zIndex: 1000, position: 'relative' }}>
+        </div>
+      </div>
+    )
+  }
 
-const HomeView = () => (
+}
+const HOME_QUERY = gql`
+query {
+  viewer {
+    login
+  }
+}
+`
 
-  <div>
-    <h4>Welcome!</h4>
-    <div style={{ zIndex: 1000, position: 'relative' }}>
+const withData = graphql(HOME_QUERY)
 
-    </div>
-  </div>
-)
 
-export default HomeView
+export default withData(HomeView)
