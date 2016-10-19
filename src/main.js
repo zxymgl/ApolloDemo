@@ -6,13 +6,24 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
+import addGraphQLSubscriptions from 'lib/utils/subscriptions'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
 
 import { ApolloProvider } from 'react-apollo'
 
+const networkInterface = createNetworkInterface({
+  uri: '/graphql',
+  opts: {
+    credentials: 'same-origin',
+  },
+  transportBatching: true,
+});
+const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+  networkInterface
+);
 
 const client = new ApolloClient({
-  networkInterface: createNetworkInterface('http://my-api.graphql.com'),
+  networkInterface: networkInterfaceWithSubscriptions
 });
 
 // ========================================================
