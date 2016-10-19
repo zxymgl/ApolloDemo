@@ -6,6 +6,15 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
 
+import ApolloClient, { createNetworkInterface } from 'apollo-client'
+
+import { ApolloProvider } from 'react-apollo'
+
+
+const client = new ApolloClient({
+  networkInterface: createNetworkInterface('http://my-api.graphql.com'),
+});
+
 // ========================================================
 // Browser History Setup
 // ========================================================
@@ -44,12 +53,14 @@ let render = (routerKey = null) => {
   const routes = require('./routes/index').default(store)
 
   ReactDOM.render(
-    <AppContainer
-      store={store}
-      history={history}
-      routes={routes}
-      routerKey={routerKey}
-    />,
+    <ApolloProvider client={client}>
+      <AppContainer
+        store={store}
+        history={history}
+        routes={routes}
+        routerKey={routerKey}
+      />
+    </ApolloProvider>,
     MOUNT_NODE
   )
 }
