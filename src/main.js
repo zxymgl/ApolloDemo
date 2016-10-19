@@ -8,7 +8,7 @@ import AppContainer from './containers/AppContainer'
 
 import addGraphQLSubscriptions from 'lib/utils/subscriptions'
 import ApolloClient, { createNetworkInterface } from 'apollo-client'
-
+import createApolloClient from 'lib/helpers/create-apollo-client'
 import { ApolloProvider } from 'react-apollo'
 
 const  sesssionValue = ''
@@ -32,7 +32,7 @@ networkInterface.use([{
 const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
   networkInterface
 )
-const client = new ApolloClient({
+const client = createApolloClient({
   networkInterface: networkInterfaceWithSubscriptions
 });
 

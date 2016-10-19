@@ -3,10 +3,10 @@ import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import ApolloClient from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
-
+import createApolloClient from '../lib/helpers/create-apollo-client'
 import makeRootReducer from './reducers'
 
-const client = new ApolloClient();
+const client =  createApolloClient;
 
 export default (initialState = {}, history) => {
   // ======================================================
@@ -32,9 +32,10 @@ export default (initialState = {}, history) => {
     makeRootReducer(),
     initialState,
     compose(
-      applyMiddleware(...middleware),
+      applyMiddleware(client().middleware()),
       ...enhancers
     )
+
   )
   store.asyncReducers = {}
 

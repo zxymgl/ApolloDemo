@@ -16,6 +16,7 @@ class HomeView extends React.Component {
     this.state = { }
   }
   render () {
+    console.log(this.props)
     return (
       <div>
         <h4>Welcome!</h4>
