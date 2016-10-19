@@ -1,7 +1,12 @@
 import { applyMiddleware, compose, createStore } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
+import ApolloClient from 'apollo-client';
+import { ApolloProvider } from 'react-apollo';
+
 import makeRootReducer from './reducers'
+
+const client = new ApolloClient();
 
 export default (initialState = {}, history) => {
   // ======================================================
