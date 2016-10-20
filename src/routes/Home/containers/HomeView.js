@@ -30,13 +30,15 @@ class HomeView extends React.Component {
     this.state = { }
   }
   render () {
-    console.log(this.props.viewer)
+    console.log(this.props)
+    let {viewer} = this.props
+
     return (
       <div>
         <h4>Welcome!</h4>
         <div style={{ zIndex: 1000, position: 'relative' }}>
           <h1>Login数据为</h1>
-          <h2>{this.props.viewer.login}</h2>
+          {viewer ? <h2>{this.props.viewer.login}</h2> : null}
         </div>
       </div>
     )
