@@ -76,6 +76,10 @@ const DataTable = (props) => {
         <td>myrepository_description</td>
         <td>{myrepository.description}</td>
       </tr>
+      <tr>
+        <td>isViewer</td>
+        <td>{viewer.location}</td>
+      </tr>
       </tbody>
     </table>
 )}
@@ -109,6 +113,7 @@ query getOrganization($name: String!) {
     company
     email
     login
+    location
     myrepository: repository(name: $name) {
       path
       name
