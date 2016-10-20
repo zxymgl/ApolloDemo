@@ -17,7 +17,7 @@ networkInterface.use([{
   applyMiddleware(req, next) {
     if (!req.options.headers) {
       req.options.headers = {
-        Authorization: 'Bearer f36821ccc7024129f9566d2395960523b4785cc1'
+        authorization: 'bearer 229eab51985aab3719aed712c2817f9b145246e7'
       };  // Create the header object if needed.
     }
     next()
