@@ -76,6 +76,14 @@ const DataTable = (props) => {
         <td>myrepository_description</td>
         <td>{myrepository.description}</td>
       </tr>
+      <tr>
+        <td>isViewer</td>
+        <td>{viewer.isViewer}</td>
+      </tr>
+      <tr>
+        <td>followers</td>
+        <td>{viewer.followers.totalCount}</td>
+      </tr>
       </tbody>
     </table>
 )}
@@ -102,13 +110,17 @@ class HomeView extends React.Component {
 
 }
 const HOME_QUERY = gql`
-query getOrganization($name: String!) {
+query getOrganization($name: String!, $first: Int, $after: String) {
   viewer {
     name
     avatarURL
     company
     email
     login
+    isViewer
+    followers(first: $first, after: $after) {
+     totalCount
+    }
     myrepository: repository(name: $name) {
       path
       name
@@ -126,7 +138,9 @@ const withData = graphql(HOME_QUERY, {
   options(props) {
     return {
       variables: {
-        name: 'ApolloDemo'
+        name: 'ApolloDemo',
+        first: 0,
+        after: 'who'
       },
       forceFetch: true,
     };
