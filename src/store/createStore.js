@@ -32,7 +32,8 @@ export default (initialState = {}, history) => {
     makeRootReducer(),
     initialState,
     compose(
-      applyMiddleware(client().middleware()),
+      applyMiddleware(client().middleware(),
+        middleware,
       ...enhancers
     )
 
